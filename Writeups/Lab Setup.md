@@ -84,6 +84,7 @@ Check that these logs are enabled via Event Viewer:
 
 ## Sysmon logs from event viewer :
 ![Description for image 1](../Screenshots/img3.png)
+
 ---
 
 ## 💡 Step 4: Install Splunk Universal Forwarder on Windows 8
@@ -92,17 +93,50 @@ Check that these logs are enabled via Event Viewer:
 2. Install with admin privileges.
 3. During setup:
 
-   * Point to your Splunk host machine's IP and port `9997`
-   * Choose "Send Windows Event Logs"
+   * When prompted for "Receiver Indexer", enter:
+   * IP Address: 192.168.29.89   (splunk Host IP)
+   * Port: 9997
+
 4. After installation, confirm that Splunk UF service is running:
 
    ```bash
    services.msc
    ```
-5. On Splunk (host machine), enable data input:
 
-   * Go to **Settings > Data Inputs > Forwarded Data**
-   * Add port `9997`
+![Description for image 1](../Screenshots/img4.png)
+
+5. On Splunk UI(host machine), enable data input:
+
+   * Go to **Settings > Forwarding and Receiving > Configure receiving > Add new port 9997**
+
+![Description for image 1](../Screenshots/img5.png) 
+
+6. Add Input.conf file to the Forwarder to Collect Logs :
+Option A: Local Config on the Forwarder (Simplest)
+Edit (or create) this file on the Win8 VM:
+
+# Path:
+  ```bash
+  C:\Program Files\SplunkUniversalForwarder\etc\system\local\inputs.conf
+  ```
+
+   ```bash
+   [default]
+   host = win8-vm
+
+   [WinEventLog://Application]
+   disabled = 0
+
+   [WinEventLog://System]
+   disabled = 0
+
+   [WinEventLog://Security]
+   disabled = 0
+
+   [monitor://C:\Windows\System32\LogFiles]
+   disabled = 0
+
+   ```
 
 ---
 
