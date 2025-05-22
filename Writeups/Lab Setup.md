@@ -33,7 +33,7 @@ Setting up your own Security Operations Center (SOC) lab is a great way to learn
 * Use **NAT or Bridged** mode so that all VMs can communicate with each other and the host.
 
 ## Lab Setup Screenshot :
-![Description for image 1](C:\Users\himap\Bug-Bounty\siem-internship-phase-1\Screenshots\image1.png)
+![Description for image 1](C:\Users\himap\Bug-Bounty\siem-internship-phase-1\Screenshots\Screenshot 2025-05-22 151505.png)
 
 ---
 
