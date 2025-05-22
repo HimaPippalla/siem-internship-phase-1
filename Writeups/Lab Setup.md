@@ -46,6 +46,9 @@ Setting up your own Security Operations Center (SOC) lab is a great way to learn
 3. Launch Splunk from the browser at `http://localhost:8000`
 4. Create an admin account when prompted.
 
+## Splunk running on Host machine :
+![Description for image 1](../Screenshots/image.png)
+
 ---
 
 ## 🚪 Step 3: Configuring the Windows 8 Target VM
@@ -57,15 +60,17 @@ Setting up your own Security Operations Center (SOC) lab is a great way to learn
 3. Run:
 
    ```bash
-   Sysmon.exe -accepteula -i sysmonconfig-export.xml
+   Sysmon64.exe -accepteula -i sysmonconfig-export.xml
    ```
 
    *(Make sure you have a Sysmon config file. You can use SwiftOnSecurity's config or generate your own.)*
 4. Confirm Sysmon service is running:
 
    ```bash
-   sc query sysmon
+   sc query sysmon64
    ```
+## Sysmon is running :
+![Description for image 1](../Screenshots/image2.png)
 
 ### 🛠️ Enable Event Logs:
 
@@ -75,8 +80,10 @@ Check that these logs are enabled via Event Viewer:
 * System
 * Application
 * Windows PowerShell
-* Sysmon (under Applications and Services Logs > Microsoft > Windows > Sysmon)
+* Sysmon (click win + R --> Type eventvwr.exe > under Applications and Services Logs > Microsoft > Windows > Sysmon > Operational)
 
+## Sysmon logs from event viewer :
+![Description for image 1](../Screenshots/img3.png)
 ---
 
 ## 💡 Step 4: Install Splunk Universal Forwarder on Windows 8
