@@ -1,13 +1,3 @@
-**Building a Personal SOC Lab: Step-by-Step Setup and Logging Guide**
-
----
-
-### 📁 Introduction
-
-Setting up your own Security Operations Center (SOC) lab is a great way to learn cybersecurity detection, monitoring, and investigation using real tools. In this guide, I walk through the full setup of a basic lab consisting of a Windows 8 target VM, a Kali Linux attacker VM, and Splunk as the SIEM running on the host machine.
-
----
-
 ## 🚀 Lab Environment Overview
 
 * **Target Machine**: Windows 8 VM
@@ -80,7 +70,7 @@ Check that these logs are enabled via Event Viewer:
 * System
 * Application
 * Windows PowerShell
-* Sysmon (click win + R --> Type eventvwr.exe > under Applications and Services Logs > Microsoft > Windows > Sysmon > Operational)
+* Sysmon (click **win + R --> Type eventvwr.exe > under Applications and Services Logs > Microsoft > Windows > Sysmon > Operational**)
 
 ## Sysmon logs from event viewer :
 ![Description for image 1](../Screenshots/img3.png)
@@ -111,9 +101,11 @@ Check that these logs are enabled via Event Viewer:
 
 ![Description for image 1](../Screenshots/img5.png) 
 
-6. Add Input.conf file to the Forwarder to Collect Logs :
-Option A: Local Config on the Forwarder (Simplest)
-Edit (or create) this file on the Win8 VM:
+6. Add **Input.conf** file to the Forwarder to Collect Logs :
+
+   * Option A: Local Config on the Forwarder (Simplest)
+
+   * Edit (or create) this file on the Win8 VM:
 
 #### Path:
   ```bash
@@ -153,23 +145,26 @@ Edit (or create) this file on the Win8 VM:
 
 ## 📊 Step 5: Confirming Log Ingestion in Splunk
 
-1. In the Splunk Search app, set time frame to last 15 min, run:
+1. In the Splunk Search app, set time frame to last 15 min to view recent logs, run:
 
    ```spl
    index=main host="WIN-BSKF7AVFT5R"
    ```
 2. You should see logs coming in from Sysmon and Event Logs.
+![Description for image 1](../Screenshots/img1.png) 
 
+3. Set time frame to All time to view All logs (Total - 5,305 event logs).....we can see all source types also  :
+![Description for image 1](../Screenshots/img2.png) 
 
 ---
 
 ## 📚 Conclusion
 
-You now have a functioning SOC lab with:
+You we have a functioning SOC lab with:
 
 * A monitored Windows target system
 * Sysmon tracking critical activity
 * Logs forwarded to Splunk in real time
 * Ready environment for attack simulation and detection development
 
-Stay tuned for attack simulation steps and detection rule creation!
+
