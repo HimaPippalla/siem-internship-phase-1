@@ -139,16 +139,27 @@ Edit (or create) this file on the Win8 VM:
 
    ```
 
+7. **Restart splunk**:   
+#### Path:
+  ```bash
+  C:\Program Files\SplunkUniversalForwarder\bin
+  ```
+  ```bash
+  splunk restart
+  ```
+![Description for image 1](../Screenshots/img.png)  
+
 ---
 
 ## 📊 Step 5: Confirming Log Ingestion in Splunk
 
-1. In the Splunk Search app, run:
+1. In the Splunk Search app, set time frame to last 15 min, run:
 
    ```spl
-   index=* host=<windows8-hostname>
+   index=main host="WIN-BSKF7AVFT5R"
    ```
 2. You should see logs coming in from Sysmon and Event Logs.
+
 
 ---
 
