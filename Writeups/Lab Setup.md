@@ -115,26 +115,27 @@ Check that these logs are enabled via Event Viewer:
 Option A: Local Config on the Forwarder (Simplest)
 Edit (or create) this file on the Win8 VM:
 
-# Path:
+#### Path:
   ```bash
   C:\Program Files\SplunkUniversalForwarder\etc\system\local\inputs.conf
   ```
-
+  #### copy this content in inputs.conf file
    ```bash
-   [default]
-   host = win8-vm
-
    [WinEventLog://Application]
    disabled = 0
+   index = main
 
    [WinEventLog://System]
    disabled = 0
+   index = main
 
    [WinEventLog://Security]
    disabled = 0
+   index = main
 
    [monitor://C:\Windows\System32\LogFiles]
    disabled = 0
+   index = main
 
    ```
 
