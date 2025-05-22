@@ -30,7 +30,10 @@ Setting up your own Security Operations Center (SOC) lab is a great way to learn
 
 ### ⚖️ Network Configuration:
 
-* Use **NAT or Host-only** mode so that all VMs can communicate with each other and the host.
+* Use **NAT or Bridged** mode so that all VMs can communicate with each other and the host.
+
+## Lab Setup Screenshot :
+![Description for image 1](Screenshots/image1.png)
 
 ---
 
