@@ -145,7 +145,7 @@ Check that these logs are enabled via Event Viewer:
 
 ## 📊 Step 5: Confirming Log Ingestion in Splunk
 
-1. In the Splunk Search app, set time frame to last 15 min to view recent logs, run:
+1. In the Splunk Search app, set time frame to **last 15 minutes** to view recent logs, run:
 
    ```spl
    index=main host="WIN-BSKF7AVFT5R"
@@ -153,7 +153,7 @@ Check that these logs are enabled via Event Viewer:
 2. You should see logs coming in from Sysmon and Event Logs.
 ![Description for image 1](../Screenshots/img1.png) 
 
-3. Set time frame to All time to view All logs (Total - 5,305 event logs).....we can see all source types also  :
+3. Set time frame to **All time** to view All logs (Total - 5,305 event logs).....we can see all source types also  :
 ![Description for image 1](../Screenshots/img2.png) 
 
 ---
