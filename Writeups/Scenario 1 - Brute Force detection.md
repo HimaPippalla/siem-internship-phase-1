@@ -55,9 +55,11 @@ smbclient -U Futwear //192.168.29.236/IPC$ -m SMB2
 ```
 ![Description for image 1](../Screenshots/BF-img4.png) 
 
+**Successfully Logged on**
+
 ### 4. Investigate in Splunk
 
-**Event code - 4625 : Failed logon**
+**Event code - 4625 : Failed logon** ,
 **Event code - 4624 : Successfull logon**
 
 Set the time frame to **last 15 mins / last 60 mins:**
@@ -78,26 +80,29 @@ Set the time frame to **last 15 mins / last 60 mins:**
 
 > 📌 **Tip**: If you see many Logon Type `3` or `10` failures, that's a clear sign of a brute-force attack.
 
+**Find failed login events:**
 ```spl
    index=main EventID=4625 LogonType 3 hostname="WIN-BSKF7AVFT5R"
 ```
 ![Description for image 1](../Screenshots/BF-img6.png)
 
+**Successfull login from same IP**
 ```spl
-   index=main EventID=4624 LogonType 3 hostname="WIN-BSKF7AVFT5R"
+   index=main EventID=4624 LogonType 3 hostname="WIN-BSKF7AVFT5R" IpAddress 192.168.29.30
 ```
 ![Description for image 1](../Screenshots/BF-img7.png)
 ![Description for image 1](../Screenshots/BF-img8.png)
 
-**Investigation in Splunk:**
+**Investigation in Splunk from above images:**
 
 * Many failed login events (4625) (logon-type = 3): 53,761
 * Time frame : less than 15 min
 * The origin IPAddress is same : 192.168.29.30
 * we can also observe there is less time gap between last bruteforce attempt (timestamp - 22/05/2025 21.49.01.000) and succesfull login (event id  - 4624)(timestamp - 22/05/2025 21.49.30.000) from the same IP address
 
+![Description for image 1](../Screenshots/kali-ip.png)
 
-**Other ways of spl queries to detect bruteforce attacks: **
+**Other ways of spl queries to detect bruteforce attacks:**
 * Failed Logins (Event ID 4625)
    ```spl
     index=wineventlog EventCode=4625 IpAddress!="-" IpAddress!=""
