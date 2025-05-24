@@ -56,3 +56,23 @@ smbclient -U Futwear //192.168.29.236/IPC$ -m SMB2
 ![Description for image 1](../Screenshots/BF-img4.png) 
 
 ### 4. Investigate in Splunk
+
+**Event code - 4625 : Failed logon**
+**Event code - 4624 : Successfull logon**
+
+Set the time frame to **last 15 mins :**
+   ```spl
+   index=main EventCode=4625 | stats count by Account_Name, Logon_Type, Failure_Reason
+   ```
+
+![Description for image 1](../Screenshots/BF-img5.png)
+
+Interpret logon types:
+
+Logon Type	         Meaning	               Brute-force Likely?
+  2	            Interactive (local login)	       ❌ No (local)
+  3	           Network (SMB, remote share)	         ✅ Yes
+  10	         RemoteInteractive (RDP)	         ✅ Yes
+  7	                   Unlock	                    ❌ No
+
+If you see many Logon Type 3 or 10 failures, that's brute-force!
