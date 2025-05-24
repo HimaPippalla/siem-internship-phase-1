@@ -78,3 +78,36 @@ Set the time frame to **last 15 mins / last 60 mins:**
 
 > 📌 **Tip**: If you see many Logon Type `3` or `10` failures, that's a clear sign of a brute-force attack.
 
+```spl
+   index=main EventID=4625 LogonType 3 hostname="WIN-BSKF7AVFT5R"
+```
+![Description for image 1](../Screenshots/BF-img6.png)
+
+```spl
+   index=main EventID=4624 LogonType 3 hostname="WIN-BSKF7AVFT5R"
+```
+![Description for image 1](../Screenshots/BF-img7.png)
+![Description for image 1](../Screenshots/BF-img8.png)
+
+**Investigation in Splunk:**
+
+* Many failed login events (4625) (logon-type = 3): 53,761
+* Time frame : less than 15 min
+* The origin IPAddress is same : 192.168.29.30
+* we can also observe there is less time gap between last bruteforce attempt (timestamp - 22/05/2025 21.49.01.000) and succesfull login (event id  - 4624)(timestamp - 22/05/2025 21.49.30.000) from the same IP address
+
+
+**Other ways of spl queries to detect bruteforce attacks: **
+* Failed Logins (Event ID 4625)
+   ```spl
+    index=wineventlog EventCode=4625 IpAddress!="-" IpAddress!=""
+    stats count by IpAddress, Account_Name
+    where count > 5
+    sort - count
+   ```
+
+* Successful Login After Brute Force (Event ID 4624)
+   ```spl
+   index=wineventlog EventCode=4624 IpAddress!="-" IpAddress!=""
+   stats count by IpAddress, Account_Name
+   ```
