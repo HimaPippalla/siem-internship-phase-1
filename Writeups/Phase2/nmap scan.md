@@ -1,8 +1,7 @@
 # Nmap — port/open service scanning (T1046) Detection (Windows 8 + Splunk)
 
 This lab simulates a nmap scanning (Active Reconnaisance) on a Windows 8.1 VM using the nmap  tool in kali linux and detects it using Splunk. It follows MITRE ATT&CK techniques:
-- T1110: Brute Force
-- T1078: Valid Accounts
+- T1046 - Network Service Scanning
 
 ---
 
@@ -16,8 +15,7 @@ This lab simulates a nmap scanning (Active Reconnaisance) on a Windows 8.1 VM us
 - **SIEM**: Splunk Enterprise (host machine)
 
 ### Tools Used
-- `hydra`: for brute-force attack
-- `smbclient`: for SMB access attempts
+- `nmap`: Port scanning/service enumeration
 - `Sysmon`: for process and network monitoring
 - `Splunk`: for log ingestion and analysis
 
