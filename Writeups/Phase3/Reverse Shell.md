@@ -35,11 +35,9 @@ This lab simulates a reverse on a Windows 8.1 VM and detects it using Splunk. It
 - Detection: Correlate Sysmon EventID=1 (process create) with EventID=3 (network connection) for the same ProcessId / commandline.
    ```spl
     index=main sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" (EventCode=1 OR EventCode=3)
-|   transaction ProcessId maxspan=1m
-|   search Image="*powershell.exe" OR Image="*cmd.exe"
-|   table _time, ProcessId, Image, CommandLine, src_ip, dest_ip, dest_port
-
+    | transaction ProcessId maxspan=1m
+    | search Image="*powershell.exe" OR Image="*cmd.exe"
+    | table _time, ProcessId, Image, CommandLine, src_ip, dest_ip, dest_port
    ```
 
 
-   
